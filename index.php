@@ -1,5 +1,7 @@
 <?php
 
+set_time_limit(0);
+
 include 'vendor/autoload.php';
 include 'config.php';
 include 'NBASearch.php';
