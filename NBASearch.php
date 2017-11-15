@@ -34,14 +34,17 @@ class NBASearch
 
         foreach ($titles as $title) {
             $titleString = trim($title->plaintext);
-            $href = URL_HEAD.$title->find('a', 0)->href;
-            $subContent = $this->getSubContent($href);
 
-            if ($subContent !== '') {
-                $this->contents .= "<h3>{$titleString}/</h3>";
-                $this->contents .= "<a href={$href} target=\"_blank\">{$href}</a><br><br>";
-                $this->contents .= $subContent;
-                $this->contents .= '<hr>';
+            if ($title->find('a', 0)->href) {
+                $href = URL_HEAD.$title->find('a', 0)->href;
+                $subContent = $this->getSubContent($href);
+
+                if ($subContent !== '') {
+                    $this->contents .= "<h3>{$titleString}/</h3>";
+                    $this->contents .= "<a href={$href} target=\"_blank\">{$href}</a><br><br>";
+                    $this->contents .= $subContent;
+                    $this->contents .= '<hr>';
+                }
             }
         }
 
