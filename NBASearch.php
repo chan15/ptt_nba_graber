@@ -35,7 +35,7 @@ class NBASearch
         foreach ($titles as $title) {
             $titleString = trim($title->plaintext);
 
-            if ($title->find('a', 0)->href) {
+            if ($title->find('a', 0)) {
                 $href = URL_HEAD.$title->find('a', 0)->href;
                 $subContent = $this->getSubContent($href);
 
