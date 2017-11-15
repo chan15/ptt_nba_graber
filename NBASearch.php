@@ -18,6 +18,15 @@ class NBASearch
         $this->getMain(DEFAULT_URL);
     }
 
+    public function result()
+    {
+        if ($this->contents === '') {
+            return 'no data';
+        }
+
+        return $this->contents;
+    }
+
     private function getMain($url)
     {
         $html = HtmlDomParser::file_get_html($url);
@@ -37,7 +46,7 @@ class NBASearch
         }
 
         $lastPage = URL_HEAD.$html->find('.btn-group-paging', 0)->find('a.btn', 1)->href;
-        $this->counter++;
+        ++$this->counter;
 
         $html->clear();
 
@@ -46,7 +55,8 @@ class NBASearch
         }
     }
 
-    private function getSubContent($url) {
+    private function getSubContent($url)
+    {
         $contents = '';
         $html = HtmlDomParser::file_get_html($url);
         $pushes = $html->find('div.push');
@@ -62,14 +72,5 @@ class NBASearch
         $html->clear();
 
         return $contents;
-    }
-
-    public function result()
-    {
-        if ($this->contents === '') {
-            return 'no data';
-        }
-
-        return $this->contents;
     }
 }
