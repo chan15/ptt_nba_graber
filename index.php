@@ -5,7 +5,7 @@ include 'config.php';
 include 'NBASearch.php';
 
 $result = '';
-$pttId = $_GET['id'];
+$pttId = isset($_GET['id']) ? $_GET['id'] : null;
 
 if ($pttId) {
     $nbaSearch = new NBASearch($pttId);
